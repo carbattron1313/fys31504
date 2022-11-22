@@ -12,13 +12,17 @@ Main program to explore temperature-dependent behaviour in ferromagnets with an 
 
 Build: g++-12 -O3 Isingmodel.cpp -forenmp -std=c+11 -I /usr/loca/opt/armadillo/include -L /usr/loca/opt/armadillo/lib -larmadillo  -o Isingmodel.exe  
 Build: export OMP_NUM_THREADS = 4 (only fot he third part)
-Run: ./Isingmodel.exe
-In order to execute it correctly we must specify in which part we are 1, 2 or 3:
+Run: ./Isingmodel.exe output_file_name part
+
+For measuring the time that takes to execute the program, we can add:
+Run: time ./Isingmodel.exe output_file_name part
+
+In order to execute it correctly we must specify in which part we are 1, 2 or 3 and the output file name where we want to save the data:
 1 to only execute the quantities as a function of temperatures, for a given temperature range.
 2 to only execute the quantities as a function of Monte Carlo cycles, for a given mcs range.
 3 The same as in 1 but with parallelization
 
-i.e. For the first part; Run: ./Isingmodel.exe 1
+i.e. For the first part; Run: ./Isingmodel.exe isingmodel 1
 
 PenningTrap.py
 --------------
