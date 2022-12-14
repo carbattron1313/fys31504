@@ -1,28 +1,25 @@
-The Ising model in C++
+Time dependent Schrödinger equation for a double slit in a box
 ------------------------
-There are one .cpp file, Isingmodel.cpp, and one .h file, random.h.
+There are one .cpp file, Project5.cpp, and one .hpp file, Project5.hpp.
 
-random.h
---------
-Includes the function random, which generates random numbers and returns a uniform deviate between 0.0 and 1.0.
-
-Isingmodel.cpp
+Project5.hpp
 --------------
-Main program to explore temperature-dependent behaviour in ferromagnets with an Ising model. We use the Markov Chain Monte Carlo approach to sample spin configurations and computes the mean energy, mean magnetization, the heat capacity and the susceptibility. The parallelization using OpenMP to estimate the speed-up factor and to numerically estimate the critical temperature at which our 2D system undergoes a phase transition.
+Includes the functions:
+- k: converts the indices of the matrix into a vector index.
+- mat_construct: constructs the matrices A and B following the Crank-Nicolson method
+- mat_fill: fills the matrices diagonals and subdiagonals
+- u_next: obtains the wave function in the next time step
+- set_up_u_0: sets up the initial wave function
+- V: sets up the slit barrier 
 
-Build: g++-12 -O3 Isingmodel.cpp -forenmp -std=c+11 -I /usr/loca/opt/armadillo/include -L /usr/loca/opt/armadillo/lib -larmadillo  -o Isingmodel.exe  
-Build: export OMP_NUM_THREADS = 4 (only fot he third part)
-Run: ./Isingmodel.exe output_file_name part
 
-For measuring the time that takes to execute the program, we can add:
-Run: time ./Isingmodel.exe output_file_name part
 
-In order to execute it correctly we must specify in which part we are 1, 2 or 3 and the output file name where we want to save the data:
-1 to only execute the quantities as a function of temperatures, for a given temperature range.
-2 to only execute the quantities as a function of Monte Carlo cycles, for a given mcs range.
-3 The same as in 1 but with parallelization
+Project5.cpp
+--------------
+Main program to to simulate the two-dimensional time-dependent Schrödinger equation, and use it to study a double-slit-in-a-box setup.
 
-i.e. For the first part; Run: ./Isingmodel.exe isingmodel 1
+Build: g++ -O3 Project5.cpp -std=c++14 -larmadillo -o Project5.exe
+Run: ./Project5.exe
 
 PenningTrap.py
 --------------
